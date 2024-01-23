@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="success">
+    <ion-title>
+      Akhmad Sofyan 2201301071
+    </ion-title>
+    <ion-button fill="clear" slot="end" (click)="setOpen(true)" color="primary"><ion-icon style="font-size: 30px;" name="add-circle-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- ionic card -->
+  <ion-card *ngFor = "let item of listMakanan;let i = index">
+    <ion-card-header>
+      <ion-card-title>Rp{{item.harga}}</ion-card-title>
+      <ion-card-subtitle style="font-size: 24px;">{{item.nama}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{item.detail}}
+    </ion-card-content>
+  
+    <ion-button (click)="setOpenEdit(true, item.id)" color="success" fill="clear"><ion-icon style="font-size: 30px;" name="create-outline"></ion-icon></ion-button>
+    <ion-button (click)="deleteMakanan(item.id)" color="danger" fill="clear"><ion-icon style="font-size: 30px;" name="trash-outline"></ion-icon></ion-button>
+  </ion-card>
+  <!-- modal edit -->
+  <ion-content class="ion-padding">
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar color="success">
+            <ion-title>Akhmad Sofyan 2201301071</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpen(false)" color="warning"><ion-icon style="font-size: 30px;" name="arrow-back-circle-outline"></ion-icon></ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-card>
+            <ion-card-content>
+              <ion-input [(ngModel)]="namaMenu" label="Nama Makanan" label-placement="floating" fill="solid" placeholder="Ayam Goreng..."></ion-input>
+              <ion-input [(ngModel)]="hargaMenu" style="margin-top: 10px;" label="Harga" label-placement="floating" fill="solid" placeholder="12.0000"></ion-input>
+              <ion-textarea [(ngModel)]="detailMenu" style="margin-top: 10px;" label="Detail" labelPlacement="floating" fill="solid" placeholder="Ayam goreng merupakan ayam goreng"></ion-textarea>
+              <ion-button style="margin-top: 20px;" (click)="addMakanan()" expand="block">Simpan</ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
+
+  <ion-content class="ion-padding">
+    <ion-modal [isOpen]="isModalOpenEdit">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar color="success">
+            <ion-title>Edit Makanan</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpenEdit(false)" color="warning"><ion-icon style="font-size: 30px;" name="arrow-back-circle-outline"></ion-icon></ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-card>
+            <ion-card-content>
+              <ion-input [(ngModel)]="namaMenuEdit" label="Nama Makanan" label-placement="floating" fill="solid" placeholder="Ayam Goreng..."></ion-input>
+              <ion-input [(ngModel)]="hargaMenuEdit" style="margin-top: 10px;" label="Harga" label-placement="floating" fill="solid" placeholder="12.0000"></ion-input>
+              <ion-textarea [(ngModel)]="detailMenuEdit" style="margin-top: 10px;" label="Detail" labelPlacement="floating" fill="solid" placeholder="Ayam goreng merupakan ayam goreng"></ion-textarea>
+              <ion-button style="margin-top: 20px;" (click)="updateMakanan(id)" expand="block">Simpan</ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
+</ion-content>
